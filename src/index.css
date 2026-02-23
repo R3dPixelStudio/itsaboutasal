@@ -1,0 +1,45 @@
+/* First, define the font file so the browser knows what 'Ink Free' is. */
+@font-face {
+  font-family: 'Caveat';
+  /* Path to the regular font file */
+  src: url('/fonts/Caveat-Regular.woff') format('woff');
+  font-weight: normal; /* or 400 */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Caveat';
+  /* Path to the bold font file */
+  src: url('/fonts/Caveat-Bold.woff') format('woff');
+  font-weight: bold; /* or 700 */
+  font-style: normal;
+}
+  
+  /* Next, import Tailwind's styles. */
+  @import "tailwindcss";
+  
+  /* Finally, use the @theme directive to create your custom font utility. */
+  @theme {
+    --font-caveat: "Caveat", cursive;
+  }
+
+  html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* CRITICAL: Stops the whole page from bouncing on iOS */
+  overscroll-behavior: none; 
+  /* CRITICAL: Stops the browser from hiding/showing address bar on pull */
+  touch-action: none; 
+  background-color: black; /* Or white, matches your theme to hide gaps if they happen */
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+  .custom-cursor {
+  z-index: 10000 !important;
+  pointer-events: none; /* Ensure it doesn't block clicks */
+}

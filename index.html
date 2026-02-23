@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Asali Web Portfolio</title>
+    
+    <style>
+      /* 1. PREVENT BOUNCE: 'overscroll-behavior-y: none' stops the rubber-banding on iOS.
+         2. TOUCH ACTION: 'pan-y' allows scrolling but disables pinch-zoom.
+      */
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        overscroll-behavior-y: none;
+        touch-action: pan-y;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* The Instant Loader.
+         Shows up in milliseconds, long before React loads.
+      */
+      #initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease-out;
+        pointer-events: none; /* Let React take over when it's ready */
+      }
+      
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #000000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-top: 20px;
+      }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="initial-loader">
+        <img src="/svg/loading-svg.svg" alt="Loading..." style="width: 200px; height: auto;" />
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
