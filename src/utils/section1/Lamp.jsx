@@ -5,7 +5,7 @@ import { SpotLight } from '@react-three/drei';
 export function Lamp({ position = [0, 0, 0], scale = 1, rotation = [0, 0, 0], assetMap }) {
   // Load the PNG image as a texture
   // Make sure your desk-lamp.png is in your /public directory
-  const texture = assetMap.get('/images/light.png');
+  const texture = assetMap.get(`${import.meta.env.BASE_URL}images/light.png`);
   const lampRef = useRef();
   // If the texture isn't ready for any reason, render nothing to be safe
   if (!texture) {

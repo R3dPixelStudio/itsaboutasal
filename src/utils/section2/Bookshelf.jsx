@@ -4,9 +4,8 @@ import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 export function BookShelf(props) {
   const { assetMap, ...restProps } = props;
-  const { nodes } = useGLTF('./models/shelfcombinednomat4.glb')
-  const texMap = assetMap.get('/textures/wood/godLAST2K.jpg');
-
+  const { nodes } = useGLTF(`${import.meta.env.BASE_URL}models/shelfcombinednomat4.glb`);
+  const texMap = assetMap.get(`${import.meta.env.BASE_URL}textures/wood/godLAST2K.jpg`);
   useEffect(() => {
     // This one line tells Three.js that your image file uses the sRGB color space.
     // It will automatically convert it to Linear space for correct lighting.
@@ -32,4 +31,4 @@ export function BookShelf(props) {
   )
 }
 
-useGLTF.preload('./models/shelfcombinednomat4.glsb')
+useGLTF.preload(`${import.meta.env.BASE_URL}models/shelfcombinednomat4.glb`)

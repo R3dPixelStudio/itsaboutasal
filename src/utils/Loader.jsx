@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 
-const LOGO_SVG_URL = "/svg/loading-svg.svg"; 
+const LOGO_SVG_URL = `${import.meta.env.BASE_URL}svg/loading-svg.svg`;
 
 const Loader = ({ onEnter }) => {
   const { progress } = useProgress();
