@@ -214,7 +214,7 @@ export function ContactSection() {
           <h2 className="text-lg md:text-2xl underline mt-1  font-bold text-black mb-8 inline-block">Architect</h2>
           <div className="mt-2 md:mt-1">
             <h3 className="text-base md:text-xl sm:text-lg font-bold mb-2 text-black/80">About Me</h3>
-            <p className="text-lg sm:text-sm lg:text-sm text-black font-bold max-w-full sm:max-w-10xl leading-relaxed">
+            <p className="text-lg sm:text-xs lg:text-sm text-black font-bold max-w-full sm:max-w-10xl leading-relaxed">
               I am an architect who is enthusiastic about sustainable architecture. I have a bachelor in Architectural Engineering and I would like to extend my knowledge, career and degree in  this area, My ultimate goal is to bring social attention to this matter and influence more people to act instead of just studying about it. Eventually I love to teach students to keep the information spreading in peoples minds.
             </p>
           </div>
