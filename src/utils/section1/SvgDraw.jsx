@@ -23,7 +23,15 @@ function StandardGroup({ group, groupIndex, bgConfig, bgLayout, groupPartsLayout
         setIsHovered(true);
         if (e && e.pointerType === 'touch') {
             if (timerRef.current) clearTimeout(timerRef.current);
-            timerRef.current = setTimeout(() => setIsHovered(false), 3000);
+            
+            // MAGIC FIX: The Turbine is groupIndex === 1
+            if (groupIndex === 1) {
+                // Drop the hover state after 100ms so they can tap it like a madman!
+                timerRef.current = setTimeout(() => setIsHovered(false), 100);
+            } else {
+                // Keep the standard 3-second hold for everything else (like Azadi Tower)
+                timerRef.current = setTimeout(() => setIsHovered(false), 3000);
+            }
         }
     };
 
