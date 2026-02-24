@@ -239,7 +239,7 @@ export function ContactSection() {
         </div>
 
         <div className="profile-img absolute top-16 left-0 transform -translate-x-1/2 z-30 pointer-events-none w-20 h-23 md:w-40 md:h-45 rounded-full border-4 border-white shadow-lg overflow-hidden">
-           <img src="/images/asali.jpg" alt="Portrait" className="w-full h-full object-cover" />
+           <img src={`${import.meta.env.BASE_URL}images/asali.jpg`} alt="Portrait" className="w-full h-full object-cover" />
         </div>
 
         <div className="absolute inset-0 overflow-hidden z-20 pointer-events-none">
