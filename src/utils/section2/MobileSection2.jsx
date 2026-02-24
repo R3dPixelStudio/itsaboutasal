@@ -8,23 +8,23 @@ const BASE = import.meta.env.BASE_URL;
 const PROJECTS = [
   { 
     id: 1, title: 'Earth Experimental Museum', number: '01.', color: '#010ed9', 
-    img: `${BASE}textures/Books/book1/1k/book1-back.jpg`,
-    pages: Array.from({ length: 6 }, (_, i) => `${BASE}textures/Books/book1/1k/book1-page${i + 1}.jpg`)
+    img: `${BASE}textures/Books/book1/2k/book1-back.jpg`,
+    pages: Array.from({ length: 6 }, (_, i) => `${BASE}textures/Books/book1/2k/book1-page${i + 1}.jpg`)
   },
   { 
     id: 2, title: 'Jaryan Residential', number: '02.', color: '#9ddbda', 
-    img: `${BASE}textures/Books/book2/1k/book2-back.jpg`, 
-    pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book2/1k/book2-page${i + 1}.jpg`)
+    img: `${BASE}textures/Books/book2/2k/book2-back.jpg`, 
+    pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book2/2k/book2-page${i + 1}.jpg`)
   },
   { 
     id: 3, title: 'Hormozan Hospital', number: '03.', color: '#99c704', 
-    img: `${BASE}textures/Books/book3/1k/book3-back.jpg`, 
-    pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book3/1k/book3-page${i + 1}.jpg`)
+    img: `${BASE}textures/Books/book3/2k/book3-back.jpg`, 
+    pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book3/2k/book3-page${i + 1}.jpg`)
   },
   { 
     id: 4, title: 'The Architect House', number: '04.', color: '#3B82F6', 
-    img: `${BASE}textures/Books/book4/1k/book4-back.jpg`, 
-    pages: Array.from({ length: 7 }, (_, i) => `${BASE}textures/Books/book4/1k/book4-page${i + 1}.jpg`)
+    img: `${BASE}textures/Books/book4/2k/book4-back.jpg`, 
+    pages: Array.from({ length: 7 }, (_, i) => `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`)
   }
 ];
 
