@@ -161,8 +161,15 @@ export default function SvgToMeshline({
     if (isPuppetPart) onPuppetHover(false);
   };
 
-  const handlePointerDown = () => {
+  const handlePointerDown = (e) => {
     if (!isDrawn) return;
+    
+    // MAGIC FIX: If they physically hit the turbine mesh, stop the event from bubbling!
+    // This lets them spam the tap purely through the GSAP physics engine.
+    if (hoverAnimation === 'turbine' && e) {
+        e.stopPropagation();
+    }
+    
     triggerTurbineSpin(); 
   };
 
