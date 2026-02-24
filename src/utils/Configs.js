@@ -14,110 +14,110 @@ export const booksConfigMap = {
   // --- MOBILE CONFIGURATION ---
   // This has been updated to show only a single, showcase book for performance.
   tablet: [
-      { id: "book1",
-        title: "Earth Experimental Museum",
-        description: "niga narenjiyarooo",
-        uiColor: "#010ed9",
-        spineSize:[0.20,1.7467,0.02],
-        spinePosition:[0.395,0,0.665],
-        coverOffset:{
-          front:[-0.65,0,0.07],
-          back:[0,0,-0.07]},
-        coverMap: `${BASE}textures/Books/book1/1k/book1-cover-glass-text.png`,
-        firstPageMap: `${BASE}textures/Books/book1/1k/book1-line-art.png`,
-        firstPageMapFlipped: `${BASE}textures/Books/book1/1k/book1-line-art.png`, 
-        backMap: `${BASE}textures/Books/book1/1k/book1-back.jpg`,
-        spineMap: `${BASE}textures/Books/book1/1k/SpineBook1.jpg`,
-        pages: Array.from({ length: 6 }, (_, i) => ({
-          pageMap: `${BASE}textures/Books/book1/1k/book1-page${i + 1}.jpg`,
-        })),
-        color: "#ffffff", 
-        position: [0.4,0.6, 0],
-        rotation: [0, HALF_PI - 0.7, 0],
-        motion: { 
-          pullZ: 0.8, // Pull out further
-          flyRotation: [0, HALF_PI, 0] // Straighten while flying
-        },
-        gsapConfig: { duration: 1.2, ease: "power2.inOut" }
+    { id: "book1",
+      title: "Earth Experimental Museum",
+      description: "niga narenjiyarooo",
+      uiColor: "#010ed9",
+      spineSize:[0.20,1.7467,0.02],
+      spinePosition:[0.395,0,0.665],
+      coverOffset:{
+        front:[-0.65,0,0.07],
+        back:[0,0,-0.07]},
+      coverMap: `${BASE}textures/Books/book1/1k/book1-cover-glass-text.png`,
+      firstPageMap: `${BASE}textures/Books/book1/1k/book1-line-art.png`,
+      firstPageMapFlipped: `${BASE}textures/Books/book1/1k/book1-line-art.png`, 
+      backMap: `${BASE}textures/Books/book1/1k/book1-back.jpg`,
+      spineMap: `${BASE}textures/Books/book1/1k/SpineBook1.jpg`,
+      pages: Array.from({ length: 6 }, (_, i) => ({
+        pageMap: `${BASE}textures/Books/book1/1k/book1-page${i + 1}.jpg`,
+      })),
+      color: "#ffffff", 
+      position: [0.4,0.6, 0],
+      rotation: [0, HALF_PI - 0.7, 0],
+      motion: { 
+        pullZ: 0.8, // Pull out further
+        flyRotation: [0, HALF_PI, 0] // Straighten while flying
       },
-      { id: "book2",
-        title: "The Jaryan Residential Complex",
-        description: "how is this as a love",
-        uiColor: "#9ddbda",
-        spineSize:[0.20,1.7467,0.02],
-        spinePosition:[0.454,0,0.64],
-        coverOffset:{
-          front:[-0.65,0,0.07],
-          back:[0,0,-0.07]},
-        coverMap: `${BASE}textures/Books/book2/1k/book2-cover.png`,
-        firstPageMap: `${BASE}textures/Books/book2/1k/book2-glass.png`,
-        firstPageMapFlipped: `${BASE}textures/Books/book2/1k/book2-glass.png`, 
-        coverTrickMap: `${BASE}textures/Books/book2/1k/book2-cover.png`,
-        backMap: `${BASE}textures/Books/book2/1k/book2-back.jpg`,
-        spineMap: `${BASE}textures/Books/book2/1k/Spine Book 2.jpg`,
-        pages: Array.from({ length: 7 }, (_, i) => ({
-          pageMap: `${BASE}textures/Books/book2/1k/book2-page${i + 1}.jpg`,
-        })),
-        color: "#ffffff",
-        position: [0.9,0.6, 0],
-        rotation: [0, HALF_PI -0.7, 0],
-        motion: { 
-          pullZ: 0.8, // Pull out further
-          flyRotation: [0, HALF_PI, 0] // Straighten while flying
-        },
-        gsapConfig: { duration: 1.4, ease: "power3.inOut" }
+      gsapConfig: { duration: 1.2, ease: "power2.inOut" }
+    },
+    { id: "book2",
+      title: "The Jaryan Residential Complex",
+      description: "how is this as a love",
+      uiColor: "#9ddbda",
+      spineSize:[0.20,1.7467,0.02],
+      spinePosition:[0.454,0,0.64],
+      coverOffset:{
+        front:[-0.65,0,0.07],
+        back:[0,0,-0.07]},
+      coverMap: `${BASE}textures/Books/book2/1k/book2-cover.png`,
+      firstPageMap: `${BASE}textures/Books/book2/1k/book2-glass.png`,
+      firstPageMapFlipped: `${BASE}textures/Books/book2/1k/book2-glass.png`, 
+      coverTrickMap: `${BASE}textures/Books/book2/1k/book2-cover.png`,
+      backMap: `${BASE}textures/Books/book2/1k/book2-back.jpg`,
+      spineMap: `${BASE}textures/Books/book2/1k/Spine Book 2.jpg`,
+      pages: Array.from({ length: 7 }, (_, i) => ({
+        pageMap: `${BASE}textures/Books/book2/1k/book2-page${i + 1}.jpg`,
+      })),
+      color: "#ffffff",
+      position: [0.9,0.6, 0],
+      rotation: [0, HALF_PI -0.7, 0],
+      motion: { 
+        pullZ: 0.8, // Pull out further
+        flyRotation: [0, HALF_PI, 0] // Straighten while flying
       },
-      { id: "book3",
-        title: "The Hormozan Hospital",
-        description: "Guduuu",
-        uiColor: "#99c704",
-        spineSize:[0.20,1.7467,0.02],
-        spinePosition:[0.454,0,0.64],
-        coverOffset:{
-          front:[-0.65,0,0.07],
-          back:[0,0,-0.07]},
-        coverMap: `${BASE}textures/Books/book3/1k/book3-cover.png`,  
-        firstPageMap: `${BASE}textures/Books/book3/1k/book3-lineart.png`,
-        firstPageMapFlipped: `${BASE}textures/Books/book3/1k/book3-lineart.png`, 
-        coverTrickMap: `${BASE}textures/Books/book3/1k/book3-cover.png`,
-        backMap: `${BASE}textures/Books/book3/1k/book3-back.jpg`,
-        spineMap: `${BASE}textures/Books/book3/1k/Spine Book 3.jpg`,
-        pages: Array.from({ length: 16 }, (_, i) => ({
-          pageMap: `${BASE}textures/Books/book3/1k/book3-page${i + 1}.jpg`,
-        })),
-        color: "#ffffff", 
-        position: [1.4,0.6, 0],
-        rotation: [0, HALF_PI - 0.7, 0],
-        motion: { 
-          pullZ: 0.8, // Pull out further
-          flyRotation: [0, HALF_PI, 0] // Straighten while flying
-        },
-        gsapConfig: { duration: 1.0, ease: "power1.inOut" }},
-      { id: "book4",
-        title: "The Architect's House",
-        description: "Guduuuuuuuuuuuuu.",
-        uiColor: "#3B82F6",
-        spineSize:[0.20,1.7467,0.02],
-        spinePosition:[0.454,0,0.64],
-        coverOffset:{
-          front:[-0.65,0,0.07],
-          back:[0,0,-0.07]},
-        coverMap: `${BASE}textures/Books/book4/1k/book4-cover.png`,
-        firstPageMap: `${BASE}textures/Books/book4/1k/book4-lineart.png`, 
-        firstPageMapFlipped: `${BASE}textures/Books/book4/1k/book4-lineart.png`,
-        backMap: `${BASE}textures/Books/book4/1k/book4-back.jpg`,
-        spineMap: `${BASE}textures/Books/book4/1k/Spine Book 4.jpg`,
-        pages: Array.from({ length: 7 }, (_, i) => ({
-          pageMap: `${BASE}textures/Books/book4/1k/book4-page${i + 1}.jpg`,
-        })),
-        color: "#ffffff", 
-        position: [1.9,0.6, 0],
-        rotation: [0, HALF_PI - 0.75, 0],
-        motion: { 
-          pullZ: 0.8, // Pull out further
-          flyRotation: [0, HALF_PI, 0] // Straighten while flying
-        },
-        gsapConfig: { duration: 1.6, ease: "power4.inOut" }},
+      gsapConfig: { duration: 1.4, ease: "power3.inOut" }
+    },
+    { id: "book3",
+      title: "The Hormozan Hospital",
+      description: "Guduuu",
+      uiColor: "#99c704",
+      spineSize:[0.20,1.7467,0.02],
+      spinePosition:[0.454,0,0.64],
+      coverOffset:{
+        front:[-0.65,0,0.07],
+        back:[0,0,-0.07]},
+      coverMap: `${BASE}textures/Books/book3/1k/book3-cover.png`,  
+      firstPageMap: `${BASE}textures/Books/book3/1k/book3-lineart.png`,
+      firstPageMapFlipped: `${BASE}textures/Books/book3/1k/book3-lineart.png`, 
+      coverTrickMap: `${BASE}textures/Books/book3/1k/book3-cover.png`,
+      backMap: `${BASE}textures/Books/book3/1k/book3-back.jpg`,
+      spineMap: `${BASE}textures/Books/book3/1k/Spine Book 3.jpg`,
+      pages: Array.from({ length: 8 }, (_, i) => ({
+        pageMap: `${BASE}textures/Books/book3/1k/book3-page${i + 1}.jpg`,
+      })),
+      color: "#ffffff", 
+      position: [1.4,0.6, 0],
+      rotation: [0, HALF_PI - 0.7, 0],
+      motion: { 
+        pullZ: 0.8, // Pull out further
+        flyRotation: [0, HALF_PI, 0] // Straighten while flying
+      },
+      gsapConfig: { duration: 1.0, ease: "power1.inOut" }},
+    { id: "book4",
+      title: "The Architect's House",
+      description: "Guduuuuuuuuuuuuu.",
+      uiColor: "#3B82F6",
+      spineSize:[0.20,1.7467,0.02],
+      spinePosition:[0.454,0,0.64],
+      coverOffset:{
+        front:[-0.65,0,0.07],
+        back:[0,0,-0.07]},
+      coverMap: `${BASE}textures/Books/book4/1k/book4-cover.png`,
+      firstPageMap: `${BASE}textures/Books/book4/1k/book4-lineart.png`, 
+      firstPageMapFlipped: `${BASE}textures/Books/book4/1k/book4-lineart.png`,
+      backMap: `${BASE}textures/Books/book4/1k/book4-back.jpg`,
+      spineMap: `${BASE}textures/Books/book4/1k/Spine Book 4.jpg`,
+      pages: Array.from({ length: 7 }, (_, i) => ({
+        pageMap: `${BASE}textures/Books/book4/1k/book4-page${i + 1}.jpg`,
+      })),
+      color: "#ffffff", 
+      position: [1.9,0.6, 0],
+      rotation: [0, HALF_PI - 0.75, 0],
+      motion: { 
+        pullZ: 0.8, // Pull out further
+        flyRotation: [0, HALF_PI, 0] // Straighten while flying
+      },
+      gsapConfig: { duration: 1.6, ease: "power4.inOut" }},
   ],
   desktop: [
     { id: "book1",

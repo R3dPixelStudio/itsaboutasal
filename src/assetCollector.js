@@ -55,10 +55,13 @@ export function collectAssetPaths(device) {
   if (SECTION_4_ASSETS.signatureCombined) svgPaths.add(SECTION_4_ASSETS.signatureCombined);
  
   //  Hardcoded Extras (Only load shelf model for non-mobile)
+  const BASE = import.meta.env.BASE_URL;
+
   if (device !== 'mobile') {
-    texturePaths.add('/textures/wood/godLAST2K.jpg');
-    texturePaths.add('/images/light.png');
-    modelPaths.add('./models/shelfcombinednomat4.glb');
+    texturePaths.add(`${BASE}textures/wood/godLAST2K.jpg`);
+    texturePaths.add(`${BASE}images/light.png`);
+    // Notice we removed the dot (.) from the start of the models path too!
+    modelPaths.add(`${BASE}models/shelfcombinednomat4.glb`);
   }
 
    // Collect SVGs (from SvgDraw config) 

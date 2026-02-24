@@ -25,7 +25,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center h-8">
             <img 
-              src="/images/logo.png" /* Path to your logo in the `public` folder */
+              src={`${import.meta.env.BASE_URL}images/logo.png`} /* Path to your logo in the `public` folder */
               alt="Logo"
               href="#" 
               className="h-14 w-14 mr-9" /* Adjust size and margin as needed */
