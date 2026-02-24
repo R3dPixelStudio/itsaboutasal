@@ -209,7 +209,7 @@ export function ContactSection() {
       
       <div className="left-column h-full z-10 flex items-center w-full md:w-[75%] overflow-hidden">
         <div className="text-wrapper p-4 pt-10 md:p-16 w-[90%] md:w-[80%] flex flex-col justify-center cursor-default origin-left">
-          <div  className="w-16 h-16 md:w-48 md:h-48 mb-4  pointer-events-none" />
+          <div  className="w-16 h-16 md:w-48 md:h-18 mb-4  pointer-events-none" />
           <h1 className="text-xl md:text-5xl sm:text-4xl font-bold text-black max-w-4xl mb-2">ASAL KOJVARZADEH NOBARI</h1>
           <h2 className="text-lg md:text-2xl underline mt-1  font-bold text-black mb-8 inline-block">Architect</h2>
           <div className="mt-2 md:mt-1">
