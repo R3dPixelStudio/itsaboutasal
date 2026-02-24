@@ -354,7 +354,7 @@ export const SVG_DRAW_LAYOUTS = {
 export const BG_LAYOUTS = {
   mobile: { position: [0, 0, 0], scale: [5, 5, 1], map: `${BASE}textures/bg/1k/painted_plaster_wall_diff_1k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/1k/painted_plaster_wall_rough_1k.jpg` },
   tablet: { position: [0, 0, 0], scale: [15, 15, 1], map: `${BASE}textures/bg/1k/painted_plaster_wall_diff_1k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/1k/painted_plaster_wall_rough_1k.jpg` },
-  desktop: { position: [0,0, -1.4], scale: [20, 20,1], map: `${BASE}textures/bg/painted_plaster_wall_diff_1k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/painted_plaster_wall_rough_1k.png` },
+  desktop: { position: [0,0, -1.4], scale: [20, 20,1], map: `${BASE}textures/bg/painted_plaster_wall_diff_2k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/painted_plaster_wall_rough_2k.png` },
 };
 
 // --- Device-specific targets for open book animation ---
