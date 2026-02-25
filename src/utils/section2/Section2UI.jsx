@@ -120,10 +120,10 @@ export default function Section2UI() {
         <div ref={detailsRef} className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 opacity-0 pointer-events-none">
              {selectedBook && (
                 <>
-                    <h2 className="text-4xl md:text-6xl font-caveat font-bold mb-4" style={{ color: selectedBook.uiColor || 'black' }}>
+                    <h2 className="text-4xl md:text-3xl font-caveat font-bold mb-4" style={{ color: selectedBook.uiColor || 'black' }}>
                         {selectedBook.title}
                     </h2>
-                    <p className="text-lg md:text-xl text-black/80 font-medium max-w-xs leading-relaxed">
+                    <p className="text-lg md:text-2xl text-black/80 font-caveat max-w-xs leading-relaxed">
                         {selectedBook.description}
                     </p>
                 </>

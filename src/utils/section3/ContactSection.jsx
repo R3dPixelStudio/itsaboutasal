@@ -108,7 +108,6 @@ export function ContactSection() {
       gsap.to(targets.panel, { x: '130%', duration: 0.8, ease: 'power3.in', overwrite: true });
       gsap.to(targets.swipeButton, { autoAlpha: 1, duration: 0.8, overwrite: true });
       
-      // MAGIC CLEANUP: Added targets.content to the kill-list using autoAlpha to ensure it vanishes perfectly
       gsap.to([targets.closeButton, targets.indicator, targets.content], { autoAlpha: 0, duration: 0.3, overwrite: true });
       
       if (!isMobile) {
@@ -123,7 +122,6 @@ export function ContactSection() {
 
     // --- CASE 2: ACTIVE (User is on Section 3) ---
     if (isOpen) {
-      // MAGIC CLEANUP: Removed 'stagger' and replaced 'opacity' with 'autoAlpha' for robust rendering
       gsap.to(targets.content, { autoAlpha: 1, duration: 0.5, delay: 0.3, overwrite: true });
       gsap.to(targets.indicator, { autoAlpha: 1, duration: 0.5, delay: 0.6 }); 
       
@@ -136,13 +134,15 @@ export function ContactSection() {
         gsap.to(targets.textWrapper, { scale: 0.8, x: 0, duration: 1.0, ease: 'power2.inOut', overwrite: true });
       } else {
         gsap.to(targets.panel, { x: '0%', width: '100%', duration: 0.8, ease: 'power2.inOut', overwrite: true });
-        gsap.to(targets.img, { x: '100%', opacity: 0, duration: 0.6, overwrite: true }); 
+        
+        // MAGIC FIX 8: The image now stays on the left edge and remains visible!
+        gsap.to(targets.img, { x: '16px', opacity: 1, duration: 0.8, ease: 'power2.inOut', overwrite: true }); 
+        
         gsap.to(targets.textWrapper, { opacity: 0, duration: 0.5, overwrite: true });
       }
     } 
     else {
       // === PREVIEW STATE ===
-      // MAGIC CLEANUP: Used autoAlpha here as well to safely hide the SVG
       gsap.to(targets.content, { autoAlpha: 0, duration: 0.3, overwrite: true }); 
       gsap.to([targets.indicator, targets.closeButton], { autoAlpha: 0, duration: 0.2, overwrite: true }); 
       
@@ -210,11 +210,15 @@ export function ContactSection() {
       <div className="left-column h-full z-10 flex items-center w-full md:w-[75%] overflow-hidden">
         <div className="text-wrapper p-4 pt-10 md:p-16 w-[90%] md:w-[80%] flex flex-col justify-center cursor-default origin-left">
           <div  className="w-16 h-16 md:w-48 md:h-18 mb-4  pointer-events-none" />
-          <h1 className="text-xl md:text-5xl sm:text-4xl font-bold text-black max-w-4xl mb-2">ASAL KOJVARZADEH NOBARI</h1>
-          <h2 className="text-lg md:text-2xl underline mt-1  font-bold text-black mb-8 inline-block">Architect</h2>
+          
+          {/* MAGIC FIX 8: Bumbed up text-xl to text-3xl for the name and text-xl for architect */}
+          <h1 className="text-3xl md:text-5xl sm:text-4xl font-bold text-black max-w-4xl mb-2 leading-tight">ASAL KOJVARZADEH NOBARI</h1>
+          <h2 className="text-xl md:text-2xl underline mt-1 font-bold text-black mb-6 inline-block">Architect</h2>
+          
           <div className="mt-2 md:mt-1">
-            <h3 className="text-base md:text-xl sm:text-lg font-bold mb-2 text-black/80">About Me</h3>
-            <p className="sm:text-sm lg:text-sm text-black font-bold max-w-full sm:max-w-10xl leading-relaxed">
+            <h3 className="text-lg md:text-xl sm:text-lg font-bold mb-2 text-black/80">About Me</h3>
+            {/* Tweaked the P tag so it breathes a bit better on mobile */}
+            <p className="text-sm md:text-base text-black font-bold max-w-full sm:max-w-10xl leading-relaxed">
               I am an architect who is enthusiastic about sustainable architecture. I have a bachelor in Architectural Engineering and I would like to extend my knowledge, career and degree in  this area, My ultimate goal is to bring social attention to this matter and influence more people to act instead of just studying about it. Eventually I love to teach students to keep the information spreading in peoples minds.
             </p>
           </div>
@@ -238,14 +242,13 @@ export function ContactSection() {
             {deviceType === 'mobile' ? 'Pinch to zoom • Drag to pan' : 'Double-click to zoom • Drag to pan'}
         </div>
 
-        <div className="profile-img absolute top-16 left-0 transform -translate-x-1/2 z-30 pointer-events-none w-20 h-23 md:w-40 md:h-45 rounded-full border-4 border-white shadow-lg overflow-hidden">
+        <div className="profile-img absolute top-16 left-0 transform -translate-x-1/2 z-30 pointer-events-none w-25 h-25 md:w-45 md:h-45 rounded-full border-4 border-white shadow-lg overflow-hidden">
            <img src={`${import.meta.env.BASE_URL}images/asali.jpg`} alt="Portrait" className="w-full h-full object-cover" />
         </div>
 
         <div className="absolute inset-0 overflow-hidden z-20 pointer-events-none">
           <div 
              ref={zoomTargetRef} 
-             // MAGIC CLEANUP: Replaced 'opacity-0' with 'invisible opacity-0' so it strictly respects autoAlpha
              className="content-right invisible opacity-0 w-full h-full absolute inset-0 flex items-center justify-center will-change-transform pointer-events-auto"
              onDoubleClick={handleDoubleClick} 
           >

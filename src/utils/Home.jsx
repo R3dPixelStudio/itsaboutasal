@@ -117,10 +117,9 @@ export default function Home() {
         <Canvas
           flat 
           shadows={!isMobile} 
-          dpr={[1, 1.5]} 
+          dpr={[1, 3]} 
           camera={{ position: [0, 0, 5], fov: 50, far: 20, near: 0.1 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, outputColorSpace: THREE.SRGBColorSpace }}
-          // Only render fully when started (saves battery), but keep loop for loader
           frameloop={isLoadedAndStarted ? "always" : "demand"}
         >
            {/* <Perf position="bottom-left" /> */}
@@ -128,10 +127,7 @@ export default function Home() {
           <directionalLight castShadow={!isMobile} position={[5, 2, 5]} intensity={1.2} shadow-bias={-0.0005} shadow-mapSize={[1024, 1024]} />
           
           <Suspense fallback={null}>
-            {/* CRITICAL FIX: 
-                enabled={isLoadedAndStarted} -> Locks scroll until user enters.
-                style={{ height: '100svh' }} -> Fixes mobile address bar resizing issues.
-            */}
+
             <ScrollControls 
                 pages={4} 
                 damping={0.2} 

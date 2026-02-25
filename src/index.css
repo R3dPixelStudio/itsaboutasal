@@ -43,3 +43,7 @@
   z-index: 10000 !important;
   pointer-events: none; /* Ensure it doesn't block clicks */
 }
+canvas {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}

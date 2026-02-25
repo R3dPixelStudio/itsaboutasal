@@ -24,7 +24,7 @@ const PROJECTS = [
   { 
     id: 4, title: 'The Architect House', number: '04.', color: '#3B82F6', 
     img: `${BASE}textures/Books/book4/2k/book4-back.jpg`, 
-    pages: Array.from({ length: 7 }, (_, i) => `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`)
+    pages: Array.from({ length: 5 }, (_, i) => `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`)
   }
 ];
 
@@ -49,9 +49,10 @@ export default function MobileSection2() {
   const startAutoScroll = () => {
     if (autoScrollTween.current) autoScrollTween.current.kill();
     
+    // Faster scroll
     autoScrollTween.current = gsap.to(transformState.current, {
-        x: transformState.current.x - 600, 
-        duration: 25,
+        x: transformState.current.x - 800, 
+        duration: 20,
         ease: 'none',
         onUpdate: applyTransform,
         onComplete: startAutoScroll
@@ -69,15 +70,36 @@ export default function MobileSection2() {
         transformState.current.y = dy;
         applyTransform();
       },
-      onDragEnd: () => {
-        if (expandedIndex !== null) startAutoScroll(); 
+      onDragEnd: ({ velocity: [vx], direction: [dirX] }) => {
+        if (expandedIndex !== null) {
+          // MAGIC FIX: Calculate Swipe Velocity!
+          if (vx > 0.2) { 
+              if (autoScrollTween.current) autoScrollTween.current.kill();
+              
+              // Give it a physical slide based on how hard they swiped
+              const boost = vx * 500 * dirX; 
+              // Respect the bounds so it doesn't shoot off the screen
+              const targetX = Math.max(-3500, Math.min(100, transformState.current.x + boost));
+              
+              autoScrollTween.current = gsap.to(transformState.current, {
+                  x: targetX,
+                  duration: 1.0 + (vx * 0.2), // The harder they swipe, the longer the slide lasts
+                  ease: "power3.out", // Starts fast, physically slows down
+                  onUpdate: applyTransform,
+                  onComplete: startAutoScroll // Once it slows down, resume the steady creep!
+              });
+          } else {
+              startAutoScroll(); 
+          }
+        }
       },
       onPinchStart: () => {
         if (autoScrollTween.current) autoScrollTween.current.kill(); 
       },
       onPinch: ({ offset: [d] }) => {
         if (expandedIndex === null) return;
-        transformState.current.scale = Math.max(1, Math.min(d, 4)); 
+        // Limits zoom into the pixels
+        transformState.current.scale = Math.max(1, Math.min(d, 2.5)); 
         applyTransform();
       },
       onPinchEnd: () => {
@@ -87,8 +109,13 @@ export default function MobileSection2() {
     {
       target: overlayRef,
       eventOptions: { passive: false }, 
-      drag: { from: () => [transformState.current.x, transformState.current.y] },
-      pinch: { scaleBounds: { min: 1, max: 4 }, rubberband: true },
+      // Physics boundaries and rubberband trapping
+      drag: { 
+        from: () => [transformState.current.x, transformState.current.y],
+        bounds: { left: -2000, right: 100, top: -100, bottom: 100 },
+        rubberband: 0.4
+      },
+      pinch: { scaleBounds: { min: 1, max: 2.5 }, rubberband: true },
     }
   );
 
@@ -159,10 +186,11 @@ export default function MobileSection2() {
 
     colsRef.current.forEach((col, i) => {
       timelineRef.current.to(col, { width: '25%', opacity: 1, duration: 0.8, ease: 'power3.inOut' }, 0.5);
-      timelineRef.current.to(imgsRef.current[i], { filter: 'grayscale(100%) contrast(100%)', duration: 0.8 }, 0.5);
+      timelineRef.current.to(imgsRef.current[i], { filter: 'grayscale(100%) brightness(90%) contrast(110%)', duration: 0.8 }, 0.5);
       
+      // Color returns to project color instead of gray
       timelineRef.current.to(numbersRef.current[i], { 
-          color: '#9ca3af', 
+          color: PROJECTS[i].color, 
           x: 0, 
           zIndex: 1, 
           duration: 0.8,
@@ -174,7 +202,6 @@ export default function MobileSection2() {
   };
 
   return (
-    // select-none strictly applied globally
     <div className="absolute inset-0 pt-20 pb-safe overflow-hidden bg-[#f4f4f4] flex flex-row select-none">
       
       <div className="w-[85%] flex flex-row h-[85%] mt-8 mb-auto px-2">
@@ -186,15 +213,15 @@ export default function MobileSection2() {
             className="h-full flex flex-col px-1 cursor-pointer relative select-none"
             onClick={() => handleOpen(i)}
           >
-            {/* shrink-0 keeps the number exactly the size it needs to be */}
+            {/* Set the initial solid color for the numbers here! */}
             <span 
                ref={el => numbersRef.current[i] = el}
-               className="relative w-fit text-gray-400 text-4xl font-light mb-2 block shrink-0 select-none"
+               style={{ color: proj.color }}
+               className="relative w-fit text-4xl font-light mb-2 block shrink-0 select-none"
             >
                 {proj.number}
             </span>
               
-            {/* MAGIC REVEALED: flex-1 and min-h-0 allows the image to stretch freely! */}
             <div className="flex-1 w-full min-h-0 bg-gray-200 overflow-hidden mb-3 relative rounded-md pointer-events-none select-none">
                 <img 
                   ref={el => imgsRef.current[i] = el}
@@ -206,7 +233,6 @@ export default function MobileSection2() {
                 />
             </div>
               
-            {/* MAGIC REVEALED: A fixed height (h-20) ensures all images above mathematically compute to the EXACT same size! */}
             <div ref={el => textsRef.current[i] = el} className="h-20 shrink-0 flex items-start select-none">
                 <p 
                   style={{ color: proj.color }} 
@@ -231,7 +257,6 @@ export default function MobileSection2() {
       <div 
         ref={overlayRef} 
         className="absolute inset-0 z-50 invisible bg-[#f4f4f4]/85 backdrop-blur-md touch-none overflow-hidden select-none"
-        // THE IMPENETRABLE SHIELD: Stops touches from bubbling to ScrollHandler!
         onWheel={(e) => e.stopPropagation()}
         onTouchStart={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
@@ -252,16 +277,43 @@ export default function MobileSection2() {
         )}
 
         <div ref={zoomTargetRef} className="w-full h-full flex items-center will-change-transform cursor-grab active:cursor-grabbing select-none">
-          {/* gap-0 perfectly eliminates the space between your pages! */}
           <div ref={filmRollRef} className="flex flex-row gap-0 items-center px-[10vw]">
-            {expandedIndex !== null && PROJECTS[expandedIndex].pages.map((pageSrc, idx) => (
-              <div 
-                key={`page-${idx}`} 
-                className="flex-shrink-0 w-[75vw] overflow-hidden shadow-xl pointer-events-none select-none"
-              >
-                <img src={pageSrc} alt={`Page ${idx + 1}`} draggable="false" className="w-full h-auto object-cover bg-white select-none" />
-              </div>
-            ))}
+            
+            {/* THE MAGIC FIX: Dynamic mapping for First and Last Pages */}
+            {expandedIndex !== null && PROJECTS[expandedIndex].pages.map((pageSrc, idx, arr) => {
+              const isFirst = idx === 0;
+              const isLast = idx === arr.length - 1;
+              
+              // Standard layout for middle pages
+              let containerClass = "w-[85vw]";
+              let imgClass = "w-full";
+
+              if (isFirst) {
+                // First Page: Container becomes half width, image shifts left to show Right Half
+                containerClass = "w-[42.5vw]";
+                imgClass = "w-[85vw] max-w-[85vw] -translate-x-1/2";
+              } else if (isLast) {
+                // Last Page: Container becomes half width, image shifts left to show Right Half
+                // (NOTE: If you actually need to show the LEFT half of the final page, change "-translate-x-1/2" to "translate-x-0")
+                containerClass = "w-[42.5vw]";
+                imgClass = "w-[85vw] max-w-[85vw] -translate-x-1/2"; 
+              }
+
+              return (
+                <div 
+                  key={`page-${idx}`} 
+                  className={`flex-shrink-0 ${containerClass} overflow-hidden shadow-xl pointer-events-none select-none`}
+                >
+                  <img 
+                    src={pageSrc} 
+                    alt={`Page ${idx + 1}`} 
+                    draggable="false" 
+                    className={`${imgClass} h-auto object-cover bg-white select-none`} 
+                  />
+                </div>
+              );
+            })}
+
           </div>
         </div>
       </div>

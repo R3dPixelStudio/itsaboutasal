@@ -70,7 +70,7 @@ export default function SvgToMeshline({
       const applyOrbitParams = (angle) => {
           if (!animationRef.current) return;
           
-          animationRef.current.position.x = 1.4 * Math.cos(angle); 
+          animationRef.current.position.x = 0.9 * Math.cos(angle); 
           animationRef.current.position.y = 0.3 * Math.sin(angle); 
           animationRef.current.position.z = Math.sin(angle) * 0.1; 
           
