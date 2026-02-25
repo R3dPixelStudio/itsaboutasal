@@ -136,7 +136,7 @@ const MobileLayout = ({ currentSection }) => {
       <div className="w-full py-4 px-6 bg-zinc-900 text-gray-400 flex flex-col gap-1 items-center justify-center flex-shrink-0 z-50 bottom-0  relative"
            style={{ background: '#1a1a1a', paddingBottom: 'env(safe-area-inset-bottom, 12px)' }}>
          <div className="flex items-center space-x-2">
-            <img src={`${import.meta.env.BASE_URL}images/R1 option 2.png`} alt="Logo" className="h-6 w-auto" />
+            <img src={`${import.meta.env.BASE_URL}images/R1 option 2.png`} alt="Logo" className="h-10 w-auto" />
             
             <span className="text-[10px]">© 2026 Red Pixel Studio</span>
          </div>
