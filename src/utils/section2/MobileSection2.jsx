@@ -112,7 +112,7 @@ export default function MobileSection2() {
       // Physics boundaries and rubberband trapping
       drag: { 
         from: () => [transformState.current.x, transformState.current.y],
-        bounds: { left: -2000, right: 100, top: -100, bottom: 100 },
+        bounds: { left: -4000, right: 100, top: -100, bottom: 100 },
         rubberband: 0.4
       },
       pinch: { scaleBounds: { min: 1, max: 2.5 }, rubberband: true },
@@ -250,7 +250,7 @@ export default function MobileSection2() {
           className="text-gray-600 text-3xl font-light tracking-[0.4em]"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          CONTENT
+          WORKS
         </span>
       </div>
 
@@ -296,7 +296,7 @@ export default function MobileSection2() {
                 // Last Page: Container becomes half width, image shifts left to show Right Half
                 // (NOTE: If you actually need to show the LEFT half of the final page, change "-translate-x-1/2" to "translate-x-0")
                 containerClass = "w-[42.5vw]";
-                imgClass = "w-[85vw] max-w-[85vw] -translate-x-1/2"; 
+                imgClass = "w-[85vw] max-w-[85vw] "; 
               }
 
               return (

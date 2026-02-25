@@ -213,7 +213,7 @@ export const booksConfigMap = {
       firstPageMapFlipped: `${BASE}textures/Books/book4/2k/book4-lineart.png`,
       backMap: `${BASE}textures/Books/book4/2k/book4-back.jpg`,
       spineMap: `${BASE}textures/Books/book4/2k/Spine Book 4.jpg`,
-      pages: Array.from({ length: 7 }, (_, i) => ({
+      pages: Array.from({ length: 5 }, (_, i) => ({
         pageMap: `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`,
       })),
       color: "#ffffff", 

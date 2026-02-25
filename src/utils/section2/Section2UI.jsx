@@ -97,7 +97,7 @@ export default function Section2UI() {
         onPointerDown={stopTouchPropagation}
     >
         <div ref={listRef} className="absolute inset-0 flex flex-col justify-center px-2 md:px-16">
-            <h2 className="hidden md:block text-xl md:text-2xl font-bold mb-8 text-black/50 uppercase tracking-widest">Collection</h2>
+            <h2 className="hidden md:block text-xl md:text-2xl font-bold mb-8 text-black/50 uppercase tracking-widest">Works</h2>
             <div className="flex flex-col space-y-6">
                 {books.map((book, index) => (
                     <button 
