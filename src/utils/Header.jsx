@@ -28,7 +28,7 @@ export default function Header() {
               src={`${import.meta.env.BASE_URL}images/logo.png`} /* Path to your logo in the `public` folder */
               alt="Logo"
               href="#" 
-              className="h-14 w-14 mr-9" /* Adjust size and margin as needed */
+              className="h-14 w-14 mr-9 sm:mt-1" /* Adjust size and margin as needed */
             />
           <a href="#" className="text-4xl  text-black  font-caveat">
             
@@ -44,7 +44,7 @@ export default function Header() {
                 key={sectionName}
                 onClick={() => handleNavClick(index)}
                 // ## 2. Active color is now 'text-white' ##
-                className={`px-3 py-1 text-3xl transition-colors
+                className={`px-2 py-1 text-3xl transition-colors
                   ${currentSection === index 
                     ? 'text-white' // Active style
                     : 'text-black hover:text-white' // Inactive style
