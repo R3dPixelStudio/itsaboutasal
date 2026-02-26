@@ -24,7 +24,7 @@ function StandardGroup({ group, groupIndex, bgConfig, bgLayout, groupPartsLayout
         if (e && e.pointerType === 'touch') {
             if (timerRef.current) clearTimeout(timerRef.current);
             
-            // MAGIC FIX: The Turbine is groupIndex === 1
+            // The Turbine is groupIndex === 1
             if (groupIndex === 1) {
                 // Drop the hover state after 100ms so they can tap it like a madman!
                 timerRef.current = setTimeout(() => setIsHovered(false), 100);
@@ -131,9 +131,9 @@ function PuppetLottie({ url, deviceType }) {
         center 
         // THE ULTIMATE SHIELD: We physically portal the HTML element into the Canvas's non-scrolling parent container!
         // This makes it 100% immune to native browser scrolling.
-        portal={{ current: gl.domElement.parentNode }} 
+        
         zIndexRange={[100, 0]}
-         // Slight Z offset to prevent clipping into the board
+        position={[puppetLayout.offsetX || 0, puppetLayout.offsetY || 0, 0.1]} // Slight Z offset to prevent clipping into the board
         scale={puppetLayout.scale || 0.35}
     >
       <div
