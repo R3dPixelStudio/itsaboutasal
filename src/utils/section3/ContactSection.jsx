@@ -210,8 +210,8 @@ export function ContactSection() {
     <div ref={containerRef} className="relative w-full h-full overflow-hidden select-none flex">
       
       <div className="left-column h-full z-10 flex items-center w-full md:w-[75%] overflow-hidden">
-        <div className="text-wrapper p-4 pt-10 md:p-16 w-[90%] md:w-[80%] flex flex-col justify-center cursor-default origin-left">
-          <div  className="w-16 h-16 md:w-48 md:h-18 mb-4  pointer-events-none" />
+        <div className="text-wrapper p-4 pb-25 md:p-16 w-[90%] md:w-[80%] flex flex-col justify-center cursor-default origin-left">
+          <div  className="w-5 h-5 md:w-48 md:h-18 mb-4  pointer-events-none" />
           
           {/* MAGIC FIX 8: Bumbed up text-xl to text-3xl for the name and text-xl for architect */}
           <h1 className="text-3xl md:text-5xl sm:text-4xl font-bold text-black max-w-4xl mb-2 leading-tight">ASAL KOJVARZADEH NOBARI</h1>
@@ -220,7 +220,7 @@ export function ContactSection() {
           <div className="mt-2 md:mt-1">
             <h3 className="text-lg md:text-xl sm:text-lg font-bold mb-2 text-black/80">About Me</h3>
             {/* Tweaked the P tag so it breathes a bit better on mobile */}
-            <p className="text-sm md:text-base text-black font-bold max-w-full sm:max-w-10xl leading-relaxed">
+            <p className="text-sm md:text-base text-black font-bold max-w-full sm:max-w-9xl leading-relaxed">
               I am an architect who is enthusiastic about sustainable architecture. I have a bachelor in Architectural Engineering and I would like to extend my knowledge, career and degree in  this area, My ultimate goal is to bring social attention to this matter and influence more people to act instead of just studying about it. Eventually I love to teach students to keep the information spreading in peoples minds.
             </p>
           </div>

@@ -269,7 +269,7 @@ export const HTML_PUPPET_LAYOUTS = {
   mobile: {
     width: '190px',
     scale: 0.6,
-    offsetY: -0.1,
+    offsetY: 0.5,
     offsetX: 0
   },
   tablet: {
