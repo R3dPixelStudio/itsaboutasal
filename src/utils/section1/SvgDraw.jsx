@@ -133,7 +133,7 @@ function PuppetLottie({ url, deviceType }) {
         // This makes it 100% immune to native browser scrolling.
         portal={{ current: gl.domElement.parentNode }} 
         zIndexRange={[100, 0]}
-        position={[puppetLayout.offsetX || 0, puppetLayout.offsetY || 0, 0.1]} // Slight Z offset to prevent clipping into the board
+         // Slight Z offset to prevent clipping into the board
         scale={puppetLayout.scale || 0.35}
     >
       <div
