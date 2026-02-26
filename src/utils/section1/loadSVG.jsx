@@ -86,7 +86,7 @@ export default function SvgToMeshline({
 
       animationTimeline.current = gsap.to(dummy, {
         t: dummy.t + 2 * Math.PI,
-        duration: 10,
+        duration: 3,
         ease: "none",
         repeat: -1,
         paused: true,

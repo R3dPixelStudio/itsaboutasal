@@ -28,8 +28,11 @@ export function ContactSection() {
 
   useGSAP(() => {
     const panel = containerRef.current.querySelector('.white-panel');
-    if (panel) gsap.set(panel, { x: '100%' }); 
+    const img = containerRef.current.querySelector('.profile-img');
+    if (panel) gsap.set(panel, { x: '130%' }); // Panel starts hidden
+    if (img) gsap.set(img, { xPercent: -50 }); // Image center is anchored to panel edge
   }, { scope: containerRef });
+  
 
   // --- GESTURE LOGIC: Pinch & Pan ---
   const applyTransform = () => {
@@ -97,7 +100,7 @@ export function ContactSection() {
 
     if (!targets.panel) return;
 
-    if (isActive && isOpen) {
+    if (isOpen) {
       setScrollDisabled(true);
     } else {
       setScrollDisabled(false);
@@ -135,9 +138,8 @@ export function ContactSection() {
       } else {
         gsap.to(targets.panel, { x: '0%', width: '100%', duration: 0.8, ease: 'power2.inOut', overwrite: true });
         
-        // MAGIC FIX 8: The image now stays on the left edge and remains visible!
-        gsap.to(targets.img, { x: '16px', opacity: 1, duration: 0.8, ease: 'power2.inOut', overwrite: true }); 
-        
+        //  The image now stays on the left edge and remains visible!
+        gsap.to(targets.img, { xPercent: 0, x: 16, opacity: 1, duration: 0.8, ease: 'power2.inOut', overwrite: true });        
         gsap.to(targets.textWrapper, { opacity: 0, duration: 0.5, overwrite: true });
       }
     } 
@@ -159,7 +161,7 @@ export function ContactSection() {
         gsap.to(targets.img, { x: '0%', opacity: 1, duration: 0.6, overwrite: true });
       } else {
         gsap.to(targets.panel, { x: '70%', width: '100%', duration: 1.2, ease: 'power3.out', overwrite: true });
-        gsap.to(targets.img, { x: '-50%', opacity: 1, duration: 0.6, overwrite: true });
+        gsap.to(targets.img, { xPercent: -50, x: 0, opacity: 1, duration: 0.6, overwrite: true });
         gsap.to(targets.textWrapper, { opacity: 1, duration: 1.2, overwrite: true });
       }
     }
@@ -242,7 +244,7 @@ export function ContactSection() {
             {deviceType === 'mobile' ? 'Pinch to zoom • Drag to pan' : 'Double-click to zoom • Drag to pan'}
         </div>
 
-        <div className="profile-img absolute top-16 left-0 transform -translate-x-1/2 z-30 pointer-events-none w-25 h-25 md:w-45 md:h-45 rounded-full border-4 border-white shadow-lg overflow-hidden">
+        <div className="profile-img absolute top-16 left-0  z-30 pointer-events-none w-35 h-35 md:w-50 md:h-50 rounded-full border-4 border-white shadow-lg overflow-hidden">
            <img src={`${import.meta.env.BASE_URL}images/asali.jpg`} alt="Portrait" className="w-full h-full object-cover" />
         </div>
 

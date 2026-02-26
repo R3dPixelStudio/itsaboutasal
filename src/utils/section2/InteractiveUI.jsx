@@ -9,7 +9,7 @@ const Button = ({ children, onClick, isActive, isDisabled, isDots, isNav }) => {
 
   const numberButtonStyle = {
     margin: '0 8px',
-    backgroundColor: isActive ? '#3B82F6' : 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: isActive ? '#000000' : 'rgba(255, 255, 255, 0.2)',
     borderRadius: '0.5rem',
     border: '1px solid rgba(0, 0, 0, 0.4)',
   };

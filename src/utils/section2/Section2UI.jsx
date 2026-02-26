@@ -88,7 +88,7 @@ export default function Section2UI() {
   return (
     <div 
         ref={containerRef} 
-        // REMOVED: '-translate-x-full' class.
+        
         // We initialize with xPercent: -100 in GSAP instead.
         // Added: 'invisible' to prevent FOC (Flash of Content) before GSAP kicks in.
         className="absolute left-0 top-0 h-full w-[25%] md:w-1/3 flex flex-col justify-center px-8 md:px-16 pointer-events-auto bg-gray-200 shadow-2xl z-20 invisible"
@@ -97,7 +97,7 @@ export default function Section2UI() {
         onPointerDown={stopTouchPropagation}
     >
         <div ref={listRef} className="absolute inset-0 flex flex-col justify-center px-2 md:px-16">
-            <h2 className="hidden md:block text-xl md:text-2xl font-bold mb-8 text-black/50 uppercase tracking-widest">Works</h2>
+            <h2 className="hidden md:block text-xl md:text-2xl font-bold mb-8 text-black/50 uppercase tracking-widest">CONTENT</h2>
             <div className="flex flex-col space-y-6">
                 {books.map((book, index) => (
                     <button 

@@ -268,7 +268,7 @@ export const SVG_DRAW_GROUPS = [
 export const HTML_PUPPET_LAYOUTS = {
   mobile: {
     width: '190px',
-    scale: 1.2,
+    scale: 0.6,
     offsetY: -0.1,
     offsetX: 0
   },
@@ -280,8 +280,8 @@ export const HTML_PUPPET_LAYOUTS = {
   },
   desktop: {
     width: '780px',
-    scale: 0.35,   
-    offsetY: 0,     
+    scale: 0.17,   
+    offsetY: -0.1,     
     offsetX: 0      
   }
 };

@@ -8,22 +8,22 @@ const BASE = import.meta.env.BASE_URL;
 const PROJECTS = [
   { 
     id: 1, title: 'Earth Experimental Museum', number: '01.', color: '#010ed9', 
-    img: `${BASE}textures/Books/book1/2k/book1-back.jpg`,
+    img: `${BASE}textures/Books/mobile-showcase/book1-slice.jpg`,
     pages: Array.from({ length: 6 }, (_, i) => `${BASE}textures/Books/book1/2k/book1-page${i + 1}.jpg`)
   },
   { 
     id: 2, title: 'Jaryan Residential', number: '02.', color: '#9ddbda', 
-    img: `${BASE}textures/Books/book2/2k/book2-back.jpg`, 
+    img: `${BASE}textures/Books/mobile-showcase/book2-slice.jpg`, 
     pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book2/2k/book2-page${i + 1}.jpg`)
   },
   { 
     id: 3, title: 'Hormozan Hospital', number: '03.', color: '#99c704', 
-    img: `${BASE}textures/Books/book3/2k/book3-back.jpg`, 
+    img: `${BASE}textures/Books/mobile-showcase/book3-slice.jpg`,
     pages: Array.from({ length: 8 }, (_, i) => `${BASE}textures/Books/book3/2k/book3-page${i + 1}.jpg`)
   },
   { 
     id: 4, title: 'The Architect House', number: '04.', color: '#3B82F6', 
-    img: `${BASE}textures/Books/book4/2k/book4-back.jpg`, 
+    img: `${BASE}textures/Books/mobile-showcase/book4-slice.jpg`,
     pages: Array.from({ length: 5 }, (_, i) => `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`)
   }
 ];
@@ -236,7 +236,7 @@ export default function MobileSection2() {
             <div ref={el => textsRef.current[i] = el} className="h-20 shrink-0 flex items-start select-none">
                 <p 
                   style={{ color: proj.color }} 
-                  className="text-xs font-semibold leading-tight whitespace-normal break-words pr-1 select-none"
+                  className="text-xs font-caveat font-semibold leading-tight whitespace-normal break-words pr-1 select-none"
                 >
                   {proj.title}
                 </p>
@@ -250,7 +250,7 @@ export default function MobileSection2() {
           className="text-gray-600 text-3xl font-light tracking-[0.4em]"
           style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
         >
-          WORKS
+          CONTENT
         </span>
       </div>
 

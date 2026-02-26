@@ -140,6 +140,7 @@ function PuppetLottie({ url, deviceType }) {
         className="flex items-center justify-center" // FIX: Centers the lottie so it anchors perfectly
         style={{
           width: puppetLayout.width || '500px',
+          height: puppetLayout.width || '500px',
           opacity: isPuppetReady ? 1 : 0,
           transition: 'opacity 0.2s ease-in',
           pointerEvents: isPuppetReady ? 'auto' : 'none',
@@ -170,7 +171,7 @@ export default function SvgDraw({ assetMap }) {
   const [activeGroup, setActiveGroup] = useState(0);
   const [activePart, setActivePart] = useState(0);
   
-  // FIX: State for the Tap Helper text
+  // State for the Tap Helper text
   const [hasTappedBoard, setHasTappedBoard] = useState(false);
   
   const layouts = useMemo(() => SVG_DRAW_LAYOUTS[deviceType], [deviceType]);
@@ -196,8 +197,8 @@ export default function SvgDraw({ assetMap }) {
   return (
     <>
       <group onPointerDown={() => setHasTappedBoard(true)}>
-        {/* FIX: Fake Drop Shadow Plane! */}
-        <Plane scale={[boardLayouts.scale[0] * 1.05, boardLayouts.scale[1] * 1.02, 1]} position={[boardLayouts.position[0], boardLayouts.position[1] - 0.05, boardLayouts.position[2] - 0.02]}>
+        {/* Fake Drop Shadow Plane! */}
+        <Plane scale={[boardLayouts.scale[0] * 1.02, boardLayouts.scale[1] * 1.01, 1]} position={[boardLayouts.position[0], boardLayouts.position[1] - 0.03, boardLayouts.position[2] - 0.01]}>
           <meshBasicMaterial color="#000000" transparent opacity={0.15} depthWrite={false} />
         </Plane>
 
@@ -205,9 +206,9 @@ export default function SvgDraw({ assetMap }) {
           <meshStandardMaterial color="white" roughness={0.5} />
         </Plane>
 
-        {/* FIX: Disappearing Tap Helper for Mobile */}
+        {/* Disappearing Tap Helper for Mobile */}
         {deviceType === 'mobile' && !hasTappedBoard && isStarted && (
-           <Html position={[boardLayouts.position[0], boardLayouts.position[1] - 1.5, boardLayouts.position[2] + 0.1]} center transform scale={0.15}>
+           <Html position={[boardLayouts.position[0], boardLayouts.position[1] - 1, boardLayouts.position[2] + 0.05]} center transform scale={0.12}>
                <div className="bg-black/60 text-white px-6 py-3 rounded-full text-lg tracking-wide animate-pulse shadow-lg pointer-events-none select-none whitespace-nowrap">
                    Tap drawings to interact
                </div>
