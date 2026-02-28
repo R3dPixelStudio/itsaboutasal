@@ -243,7 +243,7 @@ export function ContactSection() {
             {deviceType === 'mobile' ? 'Pinch to zoom • Drag to pan' : 'Double-click to zoom • Drag to pan'}
         </div>
 
-        <div className="profile-img absolute top-16 left-0  z-30 pointer-events-none w-35 h-35 md:w-50 md:h-50 rounded-full border-4 border-white shadow-lg overflow-hidden">
+        <div className="profile-img absolute top-25 left-0  z-30 pointer-events-none w-30 h-30 md:w-50 md:h-50 rounded-full border-4 border-white shadow-lg overflow-hidden">
            <img src={`${import.meta.env.BASE_URL}images/asali.jpg`} alt="Portrait" className="w-full h-full object-cover" />
         </div>
 
@@ -257,7 +257,7 @@ export function ContactSection() {
           </div>
         </div>
 
-        <button className="swipe-button absolute top-1/2 -translate-y-1/2 -left-2 z-40 flex items-center space-x-2 text-black p-2 cursor-pointer w-32 pointer-events-none">
+        <button className="swipe-button absolute top-1/2 -translate-y-1/2 -left-2 z-40 flex items-center space-x-2 text-black p-2 lg:pt-15 cursor-pointer w-32 pointer-events-none">
           <svg className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M11 18L5 12L11 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

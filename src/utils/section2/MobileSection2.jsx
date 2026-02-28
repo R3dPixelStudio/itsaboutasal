@@ -28,8 +28,20 @@ const PROJECTS = [
   }
 ];
 
+// Top-level manual boundaries! 
+// Adjust these numbers until the scroll stops perfectly for each book.
+const SCROLL_BOUNDARIES = [
+  -1800, // Limit for Book 1
+  -2700, // Limit for Book 2
+  -2700, // Limit for Book 3
+  -1400  // Limit for Book 4
+];
+
 export default function MobileSection2() {
   const [expandedIndex, setExpandedIndex] = useState(null);
+  const [zoomScale, setZoomScale] = useState(1); // Tracks zoom state to update drag boundaries!
+  
+  const expandedIndexRef = useRef(null);
   const setScrollDisabled = useBookStore((state) => state.setScrollDisabled);
   
   const colsRef = useRef([]);
@@ -46,16 +58,55 @@ export default function MobileSection2() {
 
   const transformState = useRef({ x: 0, y: 0, scale: 1 });
 
+  // Get the base manual number for the current book
+  const calculateBaseMinX = () => { 
+    const idx = expandedIndexRef.current;
+    if (idx === null ) return -3500; 
+    return SCROLL_BOUNDARIES[idx];
+  };
+
+  // Perfect CSS matrix math to calculate the shifted boundary when zoomed in!
+  const getDynamicMinX = (currentScale) => {
+    const baseMinX = calculateBaseMinX();
+    const vw = window.innerWidth;
+    return (vw / 2) - ((vw / 2) - baseMinX) * currentScale;
+  };
+
+  //  Also prevents seeing white space on the LEFT side when zoomed in!
+  const getDynamicMaxX = (currentScale) => {
+    const vw = window.innerWidth;
+    return (vw / 2) * (currentScale - 1) + 100; // 100px rubberband padding
+  };
+  
   const startAutoScroll = () => {
     if (autoScrollTween.current) autoScrollTween.current.kill();
     
-    // Faster scroll
+    const minX = getDynamicMinX(transformState.current.scale);
+    const maxX = getDynamicMaxX(transformState.current.scale);
+    
+    
+    let targetX, duration;
+
+    // GAME CAMERA LOGIC: If they zoom out and are out of bounds, snap back to the valid edge!
+    if (transformState.current.x < minX) {
+        targetX = minX;
+        duration = 0.5; // Snap back speed
+    } else if (transformState.current.x > maxX) {
+        targetX = maxX;
+        duration = 0.5; // Snap back speed
+    } else {
+        // Normal steady auto-scroll
+        targetX = minX;
+        const distanceLeft = transformState.current.x - minX;
+        if (distanceLeft <= 0) return; 
+        duration = distanceLeft / 30; 
+    }
+
     autoScrollTween.current = gsap.to(transformState.current, {
-        x: transformState.current.x - 800, 
-        duration: 20,
-        ease: 'none',
+        x: targetX, 
+        duration: duration,
+        ease: duration === 0.5 ? 'power3.out' : 'none',
         onUpdate: applyTransform,
-        onComplete: startAutoScroll
     });
   };
 
@@ -72,21 +123,22 @@ export default function MobileSection2() {
       },
       onDragEnd: ({ velocity: [vx], direction: [dirX] }) => {
         if (expandedIndex !== null) {
-          // MAGIC FIX: Calculate Swipe Velocity!
+          const minX = getDynamicMinX(transformState.current.scale);
+          const maxX = getDynamicMaxX(transformState.current.scale);
+          
           if (vx > 0.2) { 
               if (autoScrollTween.current) autoScrollTween.current.kill();
               
-              // Give it a physical slide based on how hard they swiped
               const boost = vx * 500 * dirX; 
-              // Respect the bounds so it doesn't shoot off the screen
-              const targetX = Math.max(-3500, Math.min(100, transformState.current.x + boost));
+              // Clamp slide so it cannot break our dynamic bounds
+              const targetX = Math.max(minX, Math.min(100, transformState.current.x + boost));
               
               autoScrollTween.current = gsap.to(transformState.current, {
                   x: targetX,
-                  duration: 1.0 + (vx * 0.2), // The harder they swipe, the longer the slide lasts
-                  ease: "power3.out", // Starts fast, physically slows down
+                  duration: 1.0 + (vx * 0.2), 
+                  ease: "power3.out", 
                   onUpdate: applyTransform,
-                  onComplete: startAutoScroll // Once it slows down, resume the steady creep!
+                  onComplete: startAutoScroll 
               });
           } else {
               startAutoScroll(); 
@@ -98,24 +150,32 @@ export default function MobileSection2() {
       },
       onPinch: ({ offset: [d] }) => {
         if (expandedIndex === null) return;
-        // Limits zoom into the pixels
-        transformState.current.scale = Math.max(1, Math.min(d, 2.5)); 
+        transformState.current.scale = Math.max(1, Math.min(d, 3.5)); 
         applyTransform();
       },
       onPinchEnd: () => {
-        if (expandedIndex !== null) startAutoScroll(); 
+        if (expandedIndex !== null) {
+          // Commit the new zoom scale to React state to instantly update the drag boundary math!
+          setZoomScale(transformState.current.scale);
+          startAutoScroll(); 
+        }
       }
     },
     {
       target: overlayRef,
       eventOptions: { passive: false }, 
-      // Physics boundaries and rubberband trapping
       drag: { 
         from: () => [transformState.current.x, transformState.current.y],
-        bounds: { left: -4000, right: 100, top: -100, bottom: 100 },
+        // The bounds now dynamically breathe and stretch based on the exact zoom level!
+        bounds: { 
+            left: getDynamicMinX(zoomScale), 
+            right: getDynamicMaxX(zoomScale), 
+            top: -100 * zoomScale, 
+            bottom: 100 * zoomScale 
+        }, 
         rubberband: 0.4
       },
-      pinch: { scaleBounds: { min: 1, max: 2.5 }, rubberband: true },
+      pinch: { scaleBounds: { min: 1, max: 4 }, rubberband: true },
     }
   );
 
@@ -132,6 +192,8 @@ export default function MobileSection2() {
     if (autoScrollTween.current) autoScrollTween.current.kill();
     
     setExpandedIndex(index);
+    expandedIndexRef.current = index; 
+    setZoomScale(1); // Reset boundaries on open
     
     transformState.current = { x: 0, y: 0, scale: 1 };
     applyTransform();
@@ -178,7 +240,11 @@ export default function MobileSection2() {
     if (autoScrollTween.current) autoScrollTween.current.kill();
 
     timelineRef.current = gsap.timeline({
-      onComplete: () => setExpandedIndex(null)
+      onComplete: () => {
+        setExpandedIndex(null);
+        expandedIndexRef.current = null; 
+        setZoomScale(1); // Reset boundaries on close
+      }
     });
 
     timelineRef.current.to(filmRollRef.current, { x: window.innerWidth, duration: 0.5, ease: 'power3.in' }, 0);
@@ -188,7 +254,6 @@ export default function MobileSection2() {
       timelineRef.current.to(col, { width: '25%', opacity: 1, duration: 0.8, ease: 'power3.inOut' }, 0.5);
       timelineRef.current.to(imgsRef.current[i], { filter: 'grayscale(100%) brightness(90%) contrast(110%)', duration: 0.8 }, 0.5);
       
-      // Color returns to project color instead of gray
       timelineRef.current.to(numbersRef.current[i], { 
           color: PROJECTS[i].color, 
           x: 0, 
@@ -213,7 +278,6 @@ export default function MobileSection2() {
             className="h-full flex flex-col px-1 cursor-pointer relative select-none"
             onClick={() => handleOpen(i)}
           >
-            {/* Set the initial solid color for the numbers here! */}
             <span 
                ref={el => numbersRef.current[i] = el}
                style={{ color: proj.color }}
@@ -228,8 +292,8 @@ export default function MobileSection2() {
                   src={proj.img} 
                   alt={proj.title} 
                   draggable="false" 
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-90 select-none" 
-                  style={{ filter: 'grayscale(100%) brightness(90%) contrast(110%)' }} 
+                  className="absolute inset-0 w-full h-full object-cover select-none" 
+                  style={{ filter: 'grayscale(100%) brightness(95%) contrast(100%)' }} 
                 />
             </div>
               
@@ -279,36 +343,31 @@ export default function MobileSection2() {
         <div ref={zoomTargetRef} className="w-full h-full flex items-center will-change-transform cursor-grab active:cursor-grabbing select-none">
           <div ref={filmRollRef} className="flex flex-row gap-0 items-center px-[10vw]">
             
-            {/* THE MAGIC FIX: Dynamic mapping for First and Last Pages */}
             {expandedIndex !== null && PROJECTS[expandedIndex].pages.map((pageSrc, idx, arr) => {
               const isFirst = idx === 0;
               const isLast = idx === arr.length - 1;
               
-              // Standard layout for middle pages
               let containerClass = "w-[85vw]";
               let imgClass = "w-full";
 
               if (isFirst) {
-                // First Page: Container becomes half width, image shifts left to show Right Half
                 containerClass = "w-[42.5vw]";
                 imgClass = "w-[85vw] max-w-[85vw] -translate-x-1/2";
               } else if (isLast) {
-                // Last Page: Container becomes half width, image shifts left to show Right Half
-                // (NOTE: If you actually need to show the LEFT half of the final page, change "-translate-x-1/2" to "translate-x-0")
                 containerClass = "w-[42.5vw]";
-                imgClass = "w-[85vw] max-w-[85vw] "; 
+                imgClass = "w-[85vw] max-w-[85vw] translate-x-0"; 
               }
 
               return (
                 <div 
                   key={`page-${idx}`} 
-                  className={`flex-shrink-0 ${containerClass} overflow-hidden shadow-xl pointer-events-none select-none`}
+                  className={`flex-shrink-0 ${containerClass} overflow-hidden shadow-sm pointer-events-none select-none`}
                 >
                   <img 
                     src={pageSrc} 
                     alt={`Page ${idx + 1}`} 
                     draggable="false" 
-                    className={`${imgClass} h-auto object-cover bg-white select-none`} 
+                    className={`${imgClass} h-auto object-cover bg-white select-none relative z-10`} 
                   />
                 </div>
               );

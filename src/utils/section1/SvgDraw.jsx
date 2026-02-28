@@ -1,6 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
 import { Plane, Html } from '@react-three/drei';
-import { useThree } from '@react-three/fiber'; // <-- MAGIC: Imported useThree!
+import { useThree } from '@react-three/fiber';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import SvgToMeshline from "./loadSVG.jsx";
 import BackgroundImage from './BackgroundImage.jsx';
@@ -24,7 +24,7 @@ function StandardGroup({ group, groupIndex, bgConfig, bgLayout, groupPartsLayout
         if (e && e.pointerType === 'touch') {
             if (timerRef.current) clearTimeout(timerRef.current);
             
-            // The Turbine is groupIndex === 1
+            //  The Turbine is groupIndex === 1
             if (groupIndex === 1) {
                 // Drop the hover state after 100ms so they can tap it like a madman!
                 timerRef.current = setTimeout(() => setIsHovered(false), 100);
@@ -96,7 +96,7 @@ function PuppetLottie({ url, deviceType }) {
   const [dotLottie, setDotLottie] = useState(null);
   const isHoveringRef = useRef(false);
 
-  // MAGIC: Grab the actual WebGL canvas context!
+  // Grab the actual WebGL canvas context!
   const { gl } = useThree();
 
   const puppetLayout = HTML_PUPPET_LAYOUTS[deviceType] || { width: '500px', scale: 0.35 };
@@ -128,21 +128,21 @@ function PuppetLottie({ url, deviceType }) {
   return (
     <Html 
         transform 
-        center 
-        // THE ULTIMATE SHIELD: We physically portal the HTML element into the Canvas's non-scrolling parent container!
+         
+        // We physically portal the HTML element into the Canvas's non-scrolling parent container!
         // This makes it 100% immune to native browser scrolling.
-        
+        portal={{ current: gl.domElement.parentNode }} 
         zIndexRange={[100, 0]}
-        position={[puppetLayout.offsetX || 0, puppetLayout.offsetY || 0, 0.1]} // Slight Z offset to prevent clipping into the board
+         // Slight Z offset to prevent clipping into the board
         scale={puppetLayout.scale || 0.35}
     >
       <div
-        className="flex items-center justify-center" // FIX: Centers the lottie so it anchors perfectly
+        className="flex items-center justify-center"
         style={{
-          width: puppetLayout.width || '500px',
-          height: puppetLayout.width || '500px',
+          width: '1080px',
+          height: '1080px',
           opacity: isPuppetReady ? 1 : 0,
-          transition: 'opacity 0.2s ease-in',
+          transition: 'opacity 0.1s ease-in',
           pointerEvents: isPuppetReady ? 'auto' : 'none',
         }}
         onMouseEnter={() => { isHoveringRef.current = true; dotLottie?.play(); }}
@@ -171,8 +171,6 @@ export default function SvgDraw({ assetMap }) {
   const [activeGroup, setActiveGroup] = useState(0);
   const [activePart, setActivePart] = useState(0);
   
-  // State for the Tap Helper text
-  const [hasTappedBoard, setHasTappedBoard] = useState(false);
   
   const layouts = useMemo(() => SVG_DRAW_LAYOUTS[deviceType], [deviceType]);
   const boardLayouts = useMemo(() => BOARD_LAYOUTS[deviceType], [deviceType]);
@@ -206,14 +204,7 @@ export default function SvgDraw({ assetMap }) {
           <meshStandardMaterial color="white" roughness={0.5} />
         </Plane>
 
-        {/* Disappearing Tap Helper for Mobile */}
-        {deviceType === 'mobile' && !hasTappedBoard && isStarted && (
-           <Html position={[boardLayouts.position[0], boardLayouts.position[1] - 1, boardLayouts.position[2] + 0.05]} center transform scale={0.12}>
-               <div className="bg-black/60 text-white px-6 py-3 rounded-full text-lg tracking-wide animate-pulse shadow-lg pointer-events-none select-none whitespace-nowrap">
-                   Tap drawings to interact
-               </div>
-           </Html>
-        )}
+       
       </group>
 
       {SVG_DRAW_GROUPS.map((group, groupIndex) => {

@@ -108,19 +108,19 @@ export default function Home() {
     <>
       <Header />
       
-      
-      {/* 1. Fixed Position Wrapper 
-          2. z-0 Ensures it sits BEHIND the Header (which is z-50)
-          3. bg-zinc-900 handles the "dark mode" pre-load look
+      {/* We use "pointer-events-none" when not loaded to physically block scrolling.
+          We use standard fixed inset-0 to prevent Safari's resize bug!
       */}
-      <div className={`fixed top-0 left-0 w-full h-full z-0 transition-colors duration-1000 ${isLoadedAndStarted ? 'bg-white' : 'bg-zinc-900'}`}>
+      <div className={`fixed inset-0 w-full h-full z-0 transition-colors duration-1000 ${isLoadedAndStarted ? 'bg-white pointer-events-auto' : 'bg-zinc-900 pointer-events-none'}`}
+      style={{ height: '100dvh' }}>
+
         <Canvas
           flat 
           shadows={!isMobile} 
-          dpr={[1, 3]} 
+          dpr={[1, 2]} 
           camera={{ position: [0, 0, 5], fov: 50, far: 20, near: 0.1 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, outputColorSpace: THREE.SRGBColorSpace }}
-          frameloop={isLoadedAndStarted ? "always" : "demand"}
+          frameloop="always"
         >
            {/* <Perf position="bottom-left" /> */}
           <ambientLight intensity={1.2} />
@@ -131,8 +131,8 @@ export default function Home() {
             <ScrollControls 
                 pages={4} 
                 damping={0.2} 
-                enabled={isLoadedAndStarted}
-                style={{ height: '100svh' }}
+                enabled={true}
+                
             >
               <SceneLoader device={device} />
             </ScrollControls>

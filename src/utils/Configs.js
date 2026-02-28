@@ -107,7 +107,7 @@ export const booksConfigMap = {
       firstPageMapFlipped: `${BASE}textures/Books/book4/2k/book4-lineart.png`,
       backMap: `${BASE}textures/Books/book4/2k/book4-back.jpg`,
       spineMap: `${BASE}textures/Books/book4/2k/Spine Book 4.jpg`,
-      pages: Array.from({ length: 7 }, (_, i) => ({
+      pages: Array.from({ length: 5 }, (_, i) => ({
         pageMap: `${BASE}textures/Books/book4/2k/book4-page${i + 1}.jpg`,
       })),
       color: "#ffffff", 
@@ -229,7 +229,7 @@ export const booksConfigMap = {
 
 export const SHELF_LAYOUTS = {
   mobile: { position: [0, 0, -2], scale: [0.5, 0.5, 0.5] },
-  tablet: { position: [0, -1.2, 0], scale: [1, 1, 1] },
+  tablet: { position: [1.85, -0.5, 0.2], scale: [0.5, 0.52, 0.5] },
   desktop: { position: [1.85, -0.5, 0.2], scale: [0.5, 0.52, 0.5] },
 };
 
@@ -238,7 +238,7 @@ export const SVG_DRAW_BG_IMAGES = [
     url: `${BASE}textures/boardOnHover/azadi.png`, 
     layouts: {
       mobile: { position: [0.77, 1.3, 0.1], scale: [0.5, 0.35, .6] },
-      tablet: { position: [0, 1.8, 0], scale: [1.1, 1.1, 1] },
+      tablet: { position: [1.71, 1.48, 0], scale: [1, 0.69, 1.19] },
       desktop: { position: [1.71, 1.48, 0], scale: [1, 0.69, 1.19] },
   }
   },
@@ -267,20 +267,20 @@ export const SVG_DRAW_GROUPS = [
 
 export const HTML_PUPPET_LAYOUTS = {
   mobile: {
-    width: '190px',
-    scale: 0.6,
+    
+    scale: 0.11,
     offsetY: 0.5,
     offsetX: 0
   },
   tablet: {
-    width: '300px',
-    scale: 0.35,    
-    offsetY: 0,     
-    offsetX: 0     
+    
+    scale: 0.08,   
+    offsetY: -0.1,     
+    offsetX: 0      
   },
   desktop: {
-    width: '780px',
-    scale: 0.17,   
+    
+    scale: 0.08,   
     offsetY: -0.1,     
     offsetX: 0      
   }
@@ -303,14 +303,38 @@ export const SVG_DRAW_LAYOUTS = {
     }
   ],
   tablet: [
-    { baseScaleFactor: 0.006, parts: [{ position: [0, 1.8, 0], scale: 1.1 }, { position: [2.381, 1.8, 0], scale: 1.1 }] },
-    { baseScaleFactor: 0.006, parts: [{ position: [0, 0.7, 0], scale: 1.1 }, { position: [0.15, 1, 0], scale: 1.1 }] },
-    { baseScaleFactor: 0.006, parts: [{ position: [0, -0.25, 0], scale: 1.1}, { position: [-1.99, -0.65, 0], scale: 1.1 }] },
-    { baseScaleFactor: 0.006, parts: [{ position: [0, -1.46, 0], scale: 1.1 }] },
     {
-      baseScaleFactor: 0.0025,
-      position: [0, -1.45, 0],
-      scale: 0.6,
+      baseScaleFactor: 0.004, 
+      parts: [
+        { position: [0, 1.2, 0], scale: 1.2 },
+        { position: [1.73, 1.2, 0], scale: 1.2},
+      ]
+    },
+    {
+      baseScaleFactor: 0.004, 
+      parts: [
+        { position: [0, 0.3, 0], scale: 1.2 },
+        { position: [0.08, 0.5, 0], scale: 1.2, hoverAnimation: "turbine" },
+      ]
+    },
+    {
+      baseScaleFactor: 0.004, 
+      parts: [
+        { position: [0, -0.6, 0], scale: 1.47 },
+        { position: [-1.32, -0.6, 0], scale: 1.47 },
+        { position: [-1.7, -0.3, 0], scale: 0.6, hoverAnimation: "earthOrbit"}
+      ]
+    },
+    {
+      baseScaleFactor: 0.004, 
+      parts: [
+        { position: [0, -1.7, 0], scale: 1.2 },
+      ]
+    },
+    {
+      baseScaleFactor: 0.003, 
+      position: [-0.04, -1.4, 0],
+      scale: 0.26, 
     }
   ],
   desktop: [
@@ -353,35 +377,35 @@ export const SVG_DRAW_LAYOUTS = {
 // Background configuration per device (customize as needed)
 export const BG_LAYOUTS = {
   mobile: { position: [0, 0, 0], scale: [5, 5, 1], map: `${BASE}textures/bg/1k/painted_plaster_wall_diff_1k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/1k/painted_plaster_wall_rough_1k.jpg` },
-  tablet: { position: [0, 0, 0], scale: [15, 15, 1], map: `${BASE}textures/bg/1k/painted_plaster_wall_diff_1k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/1k/painted_plaster_wall_rough_1k.jpg` },
+  tablet: { position: [0,0, -1.4], scale: [20, 20,1], map: `${BASE}textures/bg/painted_plaster_wall_diff_2k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/painted_plaster_wall_rough_2k.png` },
   desktop: { position: [0,0, -1.4], scale: [20, 20,1], map: `${BASE}textures/bg/painted_plaster_wall_diff_2k.jpg`, normalMap: `${BASE}textures/bg/1k/painted_plaster_wall_nor_gl_1k.jpg`, roughnessMap: `${BASE}textures/bg/painted_plaster_wall_rough_2k.png` },
 };
 
 // --- Device-specific targets for open book animation ---
 export const BOOK_TARGETS = {
 mobile: { position: [0.6, 0.45, 1.2], rotation: [0, 0, 0] },
-tablet: { position: [0, 0, 3], rotation: [0, 0, 0] },
+tablet: { position: [1.85, 0.15, 2.1], rotation: [0, 0, 0] },
 desktop: { position: [1.85, 0.15, 2.1], rotation: [0, 0, 0] },
 };
 
 // --- Device-specific layouts for the interactive UI ---
 export const UI_LAYOUTS = {
 mobile: { position: [0, -1.2, 0.1], scale: 0.8 },
-tablet: { position: [0, -1.5, 0.1], scale: 0.9 },
+tablet: { position: [0, -0.9, 0.1], scale: 1.0 },
 desktop: { position: [0, -0.9, 0.1], scale: 1.0 },
 };
 
 //white board section1
 export const BOARD_LAYOUTS = {
   mobile: { position: [0, 0.05, 0.05], scale: [2.25,3.5,1] },
-  tablet: { position: [0, 0, 3], scale: 1 },
+  tablet:{ position: [0, -0.1, -1], scale:[6,4.2,1] },
   desktop: { position: [0, -0.1, -1], scale:[6,4.2,1] },
 };
 
 export const LAMP_LAYOUTS = {
   mobile: { position: [0, 0, 0.15], scale: [1, 0.5, 0.4] }, 
   tablet: { position: [0, 0, 3], scale: 1 },
-  desktop: { position: [0, 1.8, -0.01], scale:[2.8,1.8,0.8] },
+  desktop: { position: [0, 1.8, -0.06], scale:[2.8,1.8,0.8] },
 };
 
 export const UI_STYLES = {

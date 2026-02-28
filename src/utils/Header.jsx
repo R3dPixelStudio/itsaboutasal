@@ -28,9 +28,9 @@ export default function Header() {
               src={`${import.meta.env.BASE_URL}images/logo.png`} /* Path to your logo in the `public` folder */
               alt="Logo"
               href="#" 
-              className="h-14 w-14 mr-9 sm:mt-1" /* Adjust size and margin as needed */
+              className="h-14 w-14 mr-5 ml-4 " /* Adjust size and margin as needed */
             />
-          <a href="#" className="text-4xl  text-black  font-caveat">
+          <a href="#" className="text-4xl mt-5  ml-5 text-black  font-caveat">
             
             {/* 2. Add your name */ }
             <span>Asal Kojvarzade Nobari</span>
@@ -58,7 +58,7 @@ export default function Header() {
           {/* Hamburger Menu Button (Mobile) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-2xl text-white z-50 "
+            className="md:hidden text-2xl text-white z-50 mr-4 mt-4" 
             aria-label="Open navigation menu"
           >
             {isMenuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
