@@ -95,15 +95,22 @@ export default function SvgToMeshline({
     } 
   }, { dependencies: [hoverAnimation] });
 
-  // THE NEW TURBINE PHYSICS ENGINE
+  // THE NEW TURBINE PHYSICS ENGINE - Button Mashing Enabled!
   const triggerTurbineSpin = contextSafe(() => {
     if (hoverAnimation === 'turbine' && animationRef.current) {
-        targetRotation.current -= Math.PI * 2; // Always exactly 360 degrees
+        targetRotation.current -= Math.PI * 2; // Always queue another full 360-degree spin
         
+        // Calculate how far we are from the target. If they mash the button, this difference grows!
+        const diff = Math.abs(targetRotation.current - proxyRotation.current.z);
+        const spinsInQueue = Math.max(1, diff / (Math.PI * 2));
+
+        // The more spins queued up, the faster the duration gets! (Max speed is 0.5s for the entire batch)
+        const dynamicDuration = Math.max(0.5, 2.5 / spinsInQueue);
+
         // Tween the proxy, and forcibly update the Three.js matrix on every frame
         gsap.to(proxyRotation.current, {
             z: targetRotation.current,
-            duration: 2.5, 
+            duration: dynamicDuration, 
             ease: "power2.out", 
             overwrite: "auto",
             onUpdate: () => {
@@ -164,11 +171,8 @@ export default function SvgToMeshline({
   const handlePointerDown = (e) => {
     if (!isDrawn) return;
     
-    // MAGIC FIX: If they physically hit the turbine mesh, stop the event from bubbling!
-    // This lets them spam the tap purely through the GSAP physics engine.
-    if (hoverAnimation === 'turbine' && e) {
-        e.stopPropagation();
-    }
+    // MAGIC UX FIX: Removed e.stopPropagation() entirely! 
+    // Now if they tap the turbine and immediately swipe, the screen scrolls perfectly.
     
     triggerTurbineSpin(); 
   };
