@@ -123,9 +123,9 @@ const MobileLayout = ({ currentSection }) => {
         <h2 className="m-title text-lg font-bold mb-4 opacity-0 text-black">Get in touch!</h2>
 
         <div className="flex flex-col gap-2 w-full items-center">
-           <ContactButton mobile icon={SECTION_4_ASSETS.emailIcon} text="Email Me" onClick={handleLinkClick} href="mailto:your.email@example.com" />
-           <ContactButton mobile icon={SECTION_4_ASSETS.linkedinIcon} text="LinkedIn" onClick={handleLinkClick} href="#" />
-           <ContactButton mobile icon={SECTION_4_ASSETS.instagramIcon} text="Instagram" onClick={handleLinkClick} href="#" />
+           <ContactButton mobile icon={SECTION_4_ASSETS.emailIcon} text="Email Me" onClick={handleLinkClick} href="mailto:its.about.asal@gmail.com" />
+           <ContactButton mobile icon={SECTION_4_ASSETS.linkedinIcon} text="LinkedIn" onClick={handleLinkClick} href="https://linkedin.com/in/asal-kojvarzadeh-nobari" />
+           <ContactButton mobile icon={SECTION_4_ASSETS.instagramIcon} text="Instagram" onClick={handleLinkClick} href="https://www.instagram.com/its_abt_asal" />
         </div>
       </div>
 
