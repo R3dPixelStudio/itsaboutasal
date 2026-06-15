@@ -50,9 +50,9 @@ const DesktopLayout = ({ currentSection }) => {
         </div>
         <h2 className="contact-title text-3xl font-bold mb-10 opacity-0 text-black">Get in touch!</h2>
         <div className="flex flex-row gap-8 justify-center items-center w-full mb-20">
-           <ContactButton icon={SECTION_4_ASSETS.emailIcon} text="Email Me" onClick={handleLinkClick} href="mailto:your.email@example.com" />
-           <ContactButton icon={SECTION_4_ASSETS.linkedinIcon} text="LinkedIn" onClick={handleLinkClick} href="#" />
-           <ContactButton icon={SECTION_4_ASSETS.instagramIcon} text="Instagram" onClick={handleLinkClick} href="#" />
+           <ContactButton icon={SECTION_4_ASSETS.emailIcon} text="Email Me" onClick={handleLinkClick} href="mailto:its.about.asal@gmail.com" />
+           <ContactButton icon={SECTION_4_ASSETS.linkedinIcon} text="LinkedIn" onClick={handleLinkClick} href="https://linkedin.com/in/asal-kojvarzadeh-nobari" />
+           <ContactButton icon={SECTION_4_ASSETS.instagramIcon} text="Instagram" onClick={handleLinkClick} href="https://www.instagram.com/its_abt_asal" />
         </div>
       </div>
       <div ref={footerRef} className="absolute bottom-0 left-0 w-full h-[15vh] flex flex-row items-center justify-between px-16 text-gray-300 bg-zinc-900 z-[100]"
